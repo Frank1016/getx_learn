@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../common/routes/app_pages.dart';
 import '../list_detail/index.dart';
 
 class HomeView extends StatelessWidget {
@@ -62,6 +63,29 @@ class HomeView extends StatelessWidget {
               );
               Get.snackbar('return value', 'success -> ${result['success']}');
             },
+          ),
+
+          ListTile(
+            title: const Text('navigation-parameters communication'),
+            subtitle: const Text('Get.toNamed(\'/home/list/detail/777\')'),
+            onTap: () async {
+              var result = await Get.toNamed(
+                '/home/list/detail/777',
+              );
+              Get.snackbar('return value', 'success -> ${result['success']}');
+            },
+          ),
+
+          ListTile(
+            title: const Text('navigation-not found'),
+            subtitle: const Text('Get.toNamed(\'/aaa/bbb/ccc\')'),
+            onTap: () => Get.toNamed('/aaa/bbb/ccc'),
+          ),
+
+          ListTile(
+            title: const Text('navigation-middleware-auth'),
+            subtitle: const Text('Get.toNamed(AppRoutes.my)'),
+            onTap: () => Get.toNamed(AppRoutes.my),
           ),
         ],
       ),
